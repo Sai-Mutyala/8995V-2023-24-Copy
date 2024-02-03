@@ -25,7 +25,7 @@ pros::Motor intake(3, pros::E_MOTOR_GEARSET_18, false);
 //cata motors here
 
 //pneumatics
-pros::ADIDigitalOut pneum(1);//1-8 = "A"-"H"
+pros::ADIDigitalOut pneum(1); //1-8 = "A"-"H"
 
 //controller
 pros::Controller master (CONTROLLER_MASTER);
