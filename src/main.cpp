@@ -2,10 +2,15 @@
 
 /*
 TODO
+(in order of importance)
 
+new puncher code
 lock intake on double press
 bespoke arcade for judge awards
-new puncher code
+
+mabe
+
+linear pid (requires horiz and vert tracking wheel, need to check if bot has space, especially vert)
 */
 
 #include "main.h"
