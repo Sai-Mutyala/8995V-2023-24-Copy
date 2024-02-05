@@ -27,7 +27,9 @@ pros::Motor lfm(1, pros::E_MOTOR_GEARSET_18, true);
 pros::Motor lbm(2, pros::E_MOTOR_GEARSET_18, true);
 //intake motor
 pros::Motor intake(3, pros::E_MOTOR_GEARSET_18, false);
-//cata motors here
+//puncher motors here
+pros::Motor cata1(7, pros::E_MOTOR_GEARSET_36, false);
+pros::Motor cata2(8, pros::E_MOTOR_GEARSET_36, true);
 
 //pneumatics
 pros::ADIDigitalOut pneum(1); //1-8 = "A"-"H"
@@ -116,12 +118,12 @@ void initialize(){
 
 //auton
 void autonomous() {
-	pros::lcd::print(4, "peoo");
-    chassi.turnTo(30,0,1000);
+  //chassi.turnTo(30,0,1000);
 }
 
 //driver control
 bool pneumOut = false;
+bool cataOn = false;
 
 void opcontrol(){
 	while (true){
@@ -134,6 +136,21 @@ void opcontrol(){
 			intake.move_velocity(-100);
 		} else {
 			intake.brake();
+		}
+		//puncher
+		if (master.get_digital_new_press(DIGITAL_R1)){
+			if (!cataOn){
+				cataOn = true;
+				cata1.move_velocity(90);
+				cata2.move_velocity(90);
+			}
+		}
+		if (master.get_digital_new_press(DIGITAL_R2)){
+			if (cataOn){
+				cataOn = false;
+				cata1.brake();
+				cata2.brake();
+			}
 		}
 		//pneumatics
 		if (master.get_digital_new_press(DIGITAL_X)){
