@@ -118,7 +118,7 @@ void initialize(){
 
 //auton
 void autonomous() {
-  chassi.turnTo(30,0,1000);
+  chassi.turnTo(0,0,2000);
 }
 
 //driver control
