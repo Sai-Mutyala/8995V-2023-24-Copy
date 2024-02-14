@@ -127,7 +127,7 @@ bool cataOn = false;
 void opcontrol(){
 	while (true){
 		//drive (mabe change later)
-		chassi.arcade(master.get_analog(ANALOG_RIGHT_Y), master.get_analog(ANALOG_LEFT_X), 2.7);
+		chassi.tank(master.get_analog(ANALOG_LEFT_Y), master.get_analog(ANALOG_RIGHT_Y), 2.7);
 		//intake
 		if (master.get_digital(DIGITAL_L1)){
 			intake.move_velocity(100);
