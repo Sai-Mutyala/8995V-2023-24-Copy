@@ -1,10 +1,9 @@
-//©2024 Team 8995V
+//©2024 Team 8995B
 
 /*
 TODO
 (in order of importance)
 
-new puncher code
 lock intake on double press
 bespoke arcade for judge awards
 
@@ -66,28 +65,28 @@ lemlib::OdomSensors odomSensors {
 
 //linear controller (odom)
 lemlib::ControllerSettings linearController {
-	8.0, //kP
-	1.0, //kI ???
-	30.0, //kD
-	5.0, //anti-windup (idk what this is or what to make it)
-	1.0, //small error
-	100.0, //small error timeout
-	3.0, //large error
-	500.0, //large error timeout
-	0.0 //slew rate ???
+	10, //kP
+	0, //kI ???
+	3, //kD
+	3, //anti-windup (idk what this is or what to make it)
+	1, //small error
+	100, //small error timeout
+	3, //large error
+	500, //large error timeout
+	20 //slew rate ???
 };
 
 //angular controller (odom)
 lemlib::ControllerSettings angularController {
-	5.0, //kP
-	0.0, //kI ???
-	10.0, //kD
-	3.0, //anti-windup (idk what this is or what to make it)
-	1.0, //small error
-	100.0, //small error timeout
-	3.0, //large error
-	500.0, //large error timeout
-	0.0 //slew rate ???
+	2, //kP
+	0, //kI ???
+	10, //kD
+	3, //anti-windup (idk what this is or what to make it)
+	1, //small error
+	100, //small error timeout
+	3, //large error
+	500, //large error timeout
+	0 //slew rate ???
 };
 
 //chassis setup (finally)
