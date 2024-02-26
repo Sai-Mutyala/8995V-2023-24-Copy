@@ -111,13 +111,24 @@ void screen(){
 void initialize(){
 	pros::lcd::initialize();
 	chassi.calibrate();
-	chassi.setPose(0,0,0);
+	chassi.setPose(-43.033,-64.494,0);
 	pros::Task screenTask(screen);
 }
 
 //auton
+ASSET(auton1_txt);
+ASSET(auton2_txt);
 void autonomous() {
-  chassi.moveToPoint(0.0,10.0,2000);
+  chassi.moveToPose(-61.466,-48.853,60);
+	chassi.turnTo(-61.466,32,2000);
+	chassi.follow(auton1_txt, 2, 15000, true, false);
+	pneum.set_value(true);
+	chassi.moveToPose(44.106,-0,90);
+	pros::delay(1000);
+	pneum.set_value(false);
+	chassi.follow(auton2_txt, 2, 10000, true, false);
+	pneum.set_value(true);
+	 chassi.moveToPose(59.008,27.253,180);
 	while (true){
 		pros::delay(10);
 		lemlib::Pose pose = chassi.getPose();
