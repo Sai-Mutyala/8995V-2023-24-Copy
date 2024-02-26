@@ -37,7 +37,7 @@ pros::ADIDigitalOut pneum(1); //1-8 = "A"-"H"
 pros::Controller master (CONTROLLER_MASTER);
 
 //inertial
-pros::Imu imu(11);
+pros::Imu im(11);
 
 //motor group setup
 pros::MotorGroup rsm({rfm, rbm});
@@ -60,31 +60,31 @@ lemlib::OdomSensors odomSensors {
 	nullptr, //vertical tracking wheel 2
 	nullptr, //horizontal tracking wheel 1
 	nullptr, //horizontal tracking wheel 2
-	&imu //intertial sensor
+	&im //intertial sensor
 };
 
 //linear controller (odom)
 lemlib::ControllerSettings linearController {
-	10, //kP
+	11.9, //kP
 	0, //kI ???
 	30, //kD
 	3, //anti-windup (idk what this is or what to make it)
-	1, //small error
+	0.5, //small error
 	100, //small error timeout
-	3, //large error
+	1.5, //large error
 	500, //large error timeout
 	20 //slew rate ???
 };
 
 //angular controller (odom)
 lemlib::ControllerSettings angularController {
-	2.0, //kP
+	2.2, //kP
 	0, //kI ???
-	0, //kD
+	10, //kD
 	3, //anti-windup (idk what this is or what to make it)
-	1, //small error
+	0.5, //small error
 	100, //small error timeout
-	3, //large error
+	1.5, //large error
 	500, //large error timeout
 	0 //slew rate ???
 };
@@ -118,9 +118,11 @@ void initialize(){
 //auton
 void autonomous() {
   chassi.moveToPoint(0.0,10.0,2000);
-	pros::delay(1500);
-	lemlib::Pose pose = chassi.getPose();
-	master.print(1, 0, "y: %f", pose.y);
+	while (true){
+		pros::delay(10);
+		lemlib::Pose pose = chassi.getPose();
+		master.print(1, 0, "y: %f", pose.y);
+	}
 }
 
 //driver control
