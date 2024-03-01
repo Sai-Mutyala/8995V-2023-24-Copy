@@ -73,7 +73,7 @@ lemlib::ControllerSettings linearController {
 	100, //small error timeout
 	1.5, //large error
 	500, //large error timeout
-	20 //slew rate ???
+	20 //slew rate - controls acceleration to prevent tipping
 };
 
 //angular controller (odom)
